@@ -5,7 +5,7 @@
 ---
 
 ## Task 1 - File IO  
-For this task, I created a Dockerfile and built an image using it. Once the image was build, I performed the operations using the following commands.  
+For this task, I created a [Dockerfile](https://github.com/aneeshkher/DevOps-Homework4/blob/master/task1/Dockerfile) and built an image using it. Once the image was build, I performed the operations using the following commands.  
 First and foremost, I build an image and created a container using the commands.  
 
 ```
@@ -39,6 +39,15 @@ Once brought up, the client would communicate with the server only through the a
 
 ## Task 3 - Docker Deploy  
 For this task, the green-blue deployment strategy was used. A `post-commit` hook was configured in the App's repository, which contained the commands to build a docker image and push it to the local repository. For this method to work, a container running `registry` had to be spun up, which would listen on port 5000 and store the images in a local repository.  
+
+The repositories were configured on the same machine using the blue-green strategy in different directoried. To push to them, a custom remote had to be added.  
+```
+git remote add blue file:///root/deploy/blue.git
+git remote add green file:///root/deploy/green.git
+```
+
+After adding the remotes, all changes can be pushed to these repositories, which are initialized using `git init --bare`  
+
 
 On making a change to the `main.js` file, the machine would be build and pushed to the local repository on a commit. On a push, the `post-receive` file would be called, which would  pull the image, remove the old containers, and deploy the new one. This way, all the changes made to the file were immediately visible on the browser after the push succeeded.  The commands used for pushing were,  
 ```
