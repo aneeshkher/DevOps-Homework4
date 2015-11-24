@@ -35,6 +35,27 @@ Using `curl -i localhost:40000`, I retrieved the file.
 In this task, docker-compose files were used to create and spin up containers. Two machines were used, one of which ran a redis-server and an ambassador to the server, and the other one ran a redis-client and an ambassador to the client. Using `docker-compose up`, the containers were brought up.  
 Once brought up, the client would communicate with the server only through the ambassador container, and never directly.  
 
+The client docker compose file would spin up two containers according to the configuration below.
+```
+aneesh_redis_cli_ambassador:
+  container_name: aneesh_redis_cli_ambassador
+  expose:
+   - "6379"
+  environment:
+   - REDIS_PORT_6379_TCP=tcp://52.34.121.99:6379
+  image: svendowideit/ambassador
+
+aneesh_redis_cli:
+  image: relateiq/redis-cli
+  container_name: aneesh_redis_cli
+  links:
+   - aneesh_redis_cli_ambassador:redis
+  stdin_open: true
+  tty: true
+```
+
+This configuration runs two containers, one ambasador and one redis cli. The two are linked using the `links` command in the docker-compose file. In order to communicate with the server, the `stdin_open` and `tty` has to be set to `true`, which will give us an interactive terminal.
+
 ---
 
 ## Task 3 - Docker Deploy  
