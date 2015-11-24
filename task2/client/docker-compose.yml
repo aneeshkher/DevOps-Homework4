@@ -1,0 +1,15 @@
+aneesh_redis_cli_ambassador:
+  container_name: aneesh_redis_cli_ambassador
+  expose:
+   - "6379"
+  environment:
+   - REDIS_PORT_6379_TCP=tcp://52.34.121.99:6379
+  image: svendowideit/ambassador
+
+aneesh_redis_cli:
+  image: relateiq/redis-cli
+  container_name: aneesh_redis_cli
+  links:
+   - aneesh_redis_cli_ambassador:redis
+  stdin_open: true
+  tty: true

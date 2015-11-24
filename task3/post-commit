@@ -1,0 +1,5 @@
+#!/bin/sh
+
+docker build -t aneesh_app .
+docker push localhost:5000/aneesh_app:latest
+

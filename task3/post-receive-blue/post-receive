@@ -1,0 +1,9 @@
+#!/bin/sh
+
+GIT_WORK_TREE=$ROOT/blue-www/ git checkout -f
+
+docker pull localhost:5000/aneesh_app
+docker stop aneesh_app_container_blue
+docker rm aneesh_app_container_blue
+docker run -d --name aneesh_app_container_blue -p 5555:8080 aneesh_app
+

@@ -1,0 +1,11 @@
+aneesh_redis_server:
+  image: crosbymichael/redis
+  container_name: aneesh_redis_server
+
+my-redis-ambassador:
+  image: svendowideit/ambassador
+  container_name: aneesh_redis_server_amb
+  links:
+   - aneesh_redis_server
+  ports:
+   - "6379:6379"
