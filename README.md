@@ -49,9 +49,9 @@ git push green master
 ---
 
 ## Screencasts
-1. Link to [task 1 screencast]().
-2. Link to [task 2 screencast]().
-3. Link to [task 3 screencast]().
+1. Link to [task 1 screencast](https://www.youtube.com/watch?v=_4CaYVHMyDE).
+2. Link to [task 2 screencast](https://www.youtube.com/watch?v=VzQQEAeolIM).
+3. Link to [task 3 screencast](https://www.youtube.com/watch?v=N7Es6hnZ0UE).
 
 ---
 
